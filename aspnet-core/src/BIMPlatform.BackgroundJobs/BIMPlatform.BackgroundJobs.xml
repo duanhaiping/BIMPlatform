@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BIMPlatform.BackgroundJobs</name>
+    </assembly>
+    <members>
+        <member name="T:BIMPlatform.BackgroundJobs.CronType">
+            <summary>
+            Cron类型
+            </summary>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Second(System.Int32)">
+            <summary>
+            周期性为秒的任务
+            </summary>
+            <param name="interval">执行周期的间隔，默认为每分钟一次</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Minute(System.Int32)">
+            <summary>
+            周期性为分钟的任务
+            </summary>
+            <param name="interval">执行周期的间隔，默认为每分钟一次</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Hour(System.Int32,System.Int32)">
+            <summary>
+            周期性为小时的任务
+            </summary>
+            <param name="minute">第几分钟开始，默认为第一分钟</param>
+            <param name="interval">执行周期的间隔，默认为每小时一次</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Day(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            周期性为天的任务
+            </summary>
+            <param name="hour">第几小时开始，默认从1点开始</param>
+            <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+            <param name="interval">执行周期的间隔，默认为每天一次</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Week(System.DayOfWeek,System.Int32,System.Int32)">
+            <summary>
+            周期性为周的任务
+            </summary>
+            <param name="dayOfWeek">星期几开始，默认从星期一点开始</param>
+            <param name="hour">第几小时开始，默认从1点开始</param>
+            <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Month(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            周期性为月的任务
+            </summary>
+            <param name="day">几号开始，默认从一号开始</param>
+            <param name="hour">第几小时开始，默认从1点开始</param>
+            <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.CronType.Year(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            周期性为年的任务
+            </summary>
+            <param name="month">几月开始，默认从一月开始</param>
+            <param name="day">几号开始，默认从一号开始</param>
+            <param name="hour">第几小时开始，默认从1点开始</param>
+            <param name="minute">第几分钟开始，默认从第1分钟开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.BackgroundJobs.Jobs.IBackgroundJob.ExecuteAsync">
+            <summary>
+            执行任务
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

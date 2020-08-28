@@ -1,0 +1,14 @@
+{
+  "culture": "en",
+  "texts": {
+    "Menu:Home": "Home",
+    "Welcome": "Welcome",
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Permission:Project": "Project Management",
+    "Permission:Create": "Add",
+    "Permission:Update": "Update",
+    "Permission:Delete": "Delete",
+    "Permission:Default": "View",
+    "ProjectError:NameDuplicate": "An item of the same name already exists"
+  }
+}

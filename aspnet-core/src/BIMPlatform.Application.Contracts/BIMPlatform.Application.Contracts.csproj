@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\WorkFile\BIMPlatform\aspnet-core\src\BIMPlatform.Application.Contracts\BIMPlatform.Application.Contracts.xml</DocumentationFile>
+    <OutputPath>D:\WorkFile\BIMPlatform\aspnet-core\src\BIMPlatform.HttpApi.Host\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.ObjectExtending" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="2.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIMPlatform.Domain.Shared\BIMPlatform.Domain.Shared.csproj" />
+  </ItemGroup>
+</Project>

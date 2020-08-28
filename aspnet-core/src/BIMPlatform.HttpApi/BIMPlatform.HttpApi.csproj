@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>BIMPlatform</RootNamespace>
+   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\WorkFile\BIMPlatform\aspnet-core\src\BIMPlatform.HttpApi.Host\BIMPlatform.HttpApi.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BIMPlatform.Application\BIMPlatform.Application.csproj" />
+    <ProjectReference Include="..\BIMPlatform.ToolKits\BIMPlatform.ToolKits.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="2.9.0" />
+  </ItemGroup>
+
+  
+
+</Project>

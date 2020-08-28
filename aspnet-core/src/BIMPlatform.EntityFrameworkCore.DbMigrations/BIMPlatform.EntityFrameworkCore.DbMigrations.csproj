@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>BIMPlatform</RootNamespace>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200525051739_Initial.cs" />
+    <Compile Remove="Migrations\20200525051739_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200624074255_init.cs" />
+    <Compile Remove="Migrations\20200624074255_init.Designer.cs" />
+    <Compile Remove="Migrations\20200624074642_init.cs" />
+    <Compile Remove="Migrations\20200624074642_init.Designer.cs" />
+    <Compile Remove="Migrations\20200624075002_init.cs" />
+    <Compile Remove="Migrations\20200624075002_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707024315_init.cs" />
+    <Compile Remove="Migrations\20200707024315_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707024458_init.cs" />
+    <Compile Remove="Migrations\20200707024458_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707025839_init.cs" />
+    <Compile Remove="Migrations\20200707025839_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707030323_init.cs" />
+    <Compile Remove="Migrations\20200707030323_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707030642_init.cs" />
+    <Compile Remove="Migrations\20200707030642_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707030857_init.cs" />
+    <Compile Remove="Migrations\20200707030857_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707031721_init.cs" />
+    <Compile Remove="Migrations\20200707031721_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707031915_init.cs" />
+    <Compile Remove="Migrations\20200707031915_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707032222_init.cs" />
+    <Compile Remove="Migrations\20200707032222_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707032911_init.cs" />
+    <Compile Remove="Migrations\20200707032911_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707033004_init.cs" />
+    <Compile Remove="Migrations\20200707033004_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707033120_init.cs" />
+    <Compile Remove="Migrations\20200707033120_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707033326_init.cs" />
+    <Compile Remove="Migrations\20200707033326_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707033839_init.cs" />
+    <Compile Remove="Migrations\20200707033839_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707052719_init.cs" />
+    <Compile Remove="Migrations\20200707052719_init.Designer.cs" />
+    <Compile Remove="Migrations\20200707063135_init.cs" />
+    <Compile Remove="Migrations\20200707063135_init.Designer.cs" />
+    <Compile Remove="Migrations\20200724085403_Init.cs" />
+    <Compile Remove="Migrations\20200724085403_Init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BIMPlatform.EntityFrameworkCore\BIMPlatform.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>

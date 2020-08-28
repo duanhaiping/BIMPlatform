@@ -1,0 +1,14 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:Home": "首页",
+    "Welcome": "欢迎",
+    "LongWelcomeMessage": "欢迎来到该应用程序. 这是一个基于ABP框架的启动项目. 有关更多信息, 请访问 abp.io.",
+    "Permission:Create": "增加",
+    "Permission:Default": "查看",
+    "Permission:Delete": "删除",
+    "Permission:Project": "项目管理",
+    "Permission:Update": "更新",
+    "ProjectError:NameDuplicate": "项目名称不可重复"
+  }
+}

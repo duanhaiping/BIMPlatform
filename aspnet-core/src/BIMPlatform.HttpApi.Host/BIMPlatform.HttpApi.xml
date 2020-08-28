@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BIMPlatform.HttpApi</name>
+    </assembly>
+    <members>
+        <member name="M:BIMPlatform.Controllers.Project.ProjectController.GetProjects">
+            <summary>
+            获取当前租户下的所有项目
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
