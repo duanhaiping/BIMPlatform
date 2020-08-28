@@ -42,9 +42,9 @@ namespace BIMPlatform.Controllers.Project
             return await ServiceResult<IList<ProjectDto>>.IsSuccess(project);
         }
         [HttpGet]
-        public async Task<ServiceResult> QueryProjects(Guid tenantID, string name)
+        public async Task<ServiceResult> QueryProjects( string name)
         {
-            var project = await ProjectService.QueryProjects(tenantID,name);
+            var project = await ProjectService.QueryProjects(name);
             return await ServiceResult<IList<ProjectDto>>.IsSuccess(project);
         }
         [HttpPost]

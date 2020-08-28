@@ -1,35 +1,39 @@
-using BIMPlatform.BackgroundJobs;
-using BIMPlatform.EntityFrameworkCore;
-using BIMPlatform.Filters;
-using BIMPlatform.Middleware;
-using BIMPlatform.MultiTenancy;
-using BIMPlatform.Swagger;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.TenantManagement;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using BIMPlatform.EntityFrameworkCore;
+using BIMPlatform.BackgroundJobs;
+using BIMPlatform.Swagger;
+using Microsoft.AspNetCore.Mvc;
+using BIMPlatform.Filters;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
+using BIMPlatform.Middleware;
+using BIMPlatform.MultiTenancy;
+using Volo.Abp.TenantManagement;
+using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 
 namespace BIMPlatform
 {
@@ -37,13 +41,14 @@ namespace BIMPlatform
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMultiTenancyModule),
         typeof(AbpTenantManagementHttpApiModule),
-        //typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(BIMPlatformHttpApiModule),
          typeof(BIMPlatformApplicationModule),
         typeof(BIMPlatformEntityFrameworkCoreDbMigrationsModule),
+        typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
          typeof(BIMPlatformSwaggerModule),
         typeof(BIMPlatformBackgroundJobsModule)
         )]
@@ -75,10 +80,10 @@ namespace BIMPlatform
             ConfigureLocalization();
             ConfigureVirtualFileSystem(context);
             ConfigureCors(context, configuration);
-           
+            //ConfigureSwaggerServices(context);
             ConfigureRouting(context);
         }
-    
+
         private void ConfigureRouting(ServiceConfigurationContext context)
         {
             context.Services.AddRouting(options =>

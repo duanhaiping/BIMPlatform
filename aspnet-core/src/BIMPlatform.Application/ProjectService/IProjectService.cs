@@ -10,7 +10,7 @@ namespace BIMPlatform.ProjectService
     {
         Task<IList<ProjectDto> > GetProjectsByTenantAsync(Guid tenantID);
         Task<IList<ProjectDto>> GetProjectsByTenantAsync();
-        Task<IList<ProjectDto>> QueryProjects(Guid tenantID,string name);
+        Task<IList<ProjectDto>> QueryProjects(string name);
         Task<ProjectDto> GetProjectAsync(Guid projectID);
         Task CreateAsync(ProjectCreateParams projectDto);
         Task UpdateAsync(ProjectDto projectDto);

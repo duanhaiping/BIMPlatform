@@ -22,7 +22,7 @@ namespace BIMPlatform.EntityFrameworkCore
     public class BIMPlatformDbContext : AbpDbContext<BIMPlatformDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
-        public DbSet<BIMTenantDetail> BIMTenants { get; set; }
+        
 
         public DbSet<Projects.Project> Projects { get; set; }
         /* Add DbSet properties for your Aggregate Roots / Entities here.
@@ -52,7 +52,7 @@ namespace BIMPlatform.EntityFrameworkCore
                  * Also see the BIMPlatformEfCoreEntityExtensionMappings class
                  */
             });
-
+           
             /* Configure your own tables/entities inside the ConfigureBIMPlatform method */
 
             builder.ConfigureBIMPlatform();

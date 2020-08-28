@@ -13,13 +13,6 @@ namespace BIMPlatform.EntityFrameworkCore
         public static void ConfigureBIMPlatform(this ModelBuilder builder)
         {
             Check.NotNull(builder, nameof(builder));
-          
-
-            builder.Entity<BIMTenantDetail>(b =>
-            {
-                b.ToTable(BIMPlatformConsts.DbTablePrefix_Tenant + "TenantDetail");
-
-            });
             builder.Entity<Projects.Project>(b =>
             {
                 b.ToTable(BIMPlatformConsts.DbTablePrefix_Project + "Project");

@@ -68,7 +68,7 @@ namespace BIMPlatform.ProjectService.impl
                 return result;
             }
         }
-        public async Task<IList<ProjectDto>> QueryProjects(Guid tenantID, string name)
+        public async Task<IList<ProjectDto>> QueryProjects( string name)
         {
             IList<ProjectDto> result;
             using (DataFilter.Enable<IMultiTenant>())
