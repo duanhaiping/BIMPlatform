@@ -129,26 +129,6 @@ export const asyncRoutes = [
         roles: ['AbpIdentity.Roles'],
         icon: 'role'
       }
-    },
-    {
-      path: 'job',
-      component: () => import('@/views/job/index'),
-      name: 'Job',
-      meta: {
-        title: 'job',
-        roles: ['Business.Job'],
-        icon: 'job'
-      }
-    },
-    {
-      path: 'employee',
-      component: () => import('@/views/employee/index'),
-      name: 'Employee',
-      meta: {
-        title: 'employee',
-        roles: ['Business.Employee'],
-        icon: 'employee'
-      }
     }
     ] },
   {
@@ -179,7 +159,41 @@ export const asyncRoutes = [
           title: 'tenantConfig',
           // roles: ['AbpIdentity.tenant'],
           icon: 'system'
+        },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/project',
+    component: Layout,
+    redirect: '/404',
+    alwaysShow: true,
+    name: 'ProjectManagement',
+    meta: {
+      title: 'ProjectManagement',
+      icon: 'theme'
+    },
+    children: [
+      {
+        path: 'project',
+        component: () => import('@/views/project/index'),
+        name: 'project',
+        meta: {
+          title: 'projectList',
+          // roles: ['AbpIdentity.tenant'],
+          icon: 'job'
         }
+      }, {
+        path: 'projectUser',
+        component: () => import('@/views/project/projectUser'),
+        name: 'projectUser',
+        meta: {
+          title: 'projectUser',
+          // roles: ['AbpIdentity.tenant'],
+          icon: 'job'
+        },
+        hidden: true
       }
     ]
   },

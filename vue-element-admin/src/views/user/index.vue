@@ -18,151 +18,151 @@
         type="success"
         icon="el-icon-search"
         @click="handleFilter"
-      >搜索</el-button>
+      >    {{ $t('base.search') }}</el-button>
       <el-button
         class="filter-item"
         size="mini"
         type="warning"
         icon="el-icon-refresh-left"
         @click="resetQuery"
-      >重置</el-button>
-      <div class="opts">
-        <el-button
-          v-permission="['AbpIdentity.Users.Create']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="handleCreate"
-        >新增</el-button>
-        <el-button
-          v-permission="['AbpIdentity.Users.Update']"
-          class="filter-item"
-          size="mini"
-          type="success"
-          icon="el-icon-edit"
-          @click="handleUpdate()"
-        >修改</el-button>
-        <el-button
-          slot="reference"
-          v-permission="['AbpIdentity.Users.Delete']"
-          class="filter-item"
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          @click="handleDelete()"
-        >删除</el-button>
-      </div>
-    </div>
-    <!--表单渲染-->
-    <el-dialog
-      :visible.sync="dialogFormVisible"
-      :close-on-click-modal="false"
-      :title="formTitle"
-      width="570px"
-    >
-      <el-form
-        ref="form"
-        :inline="true"
-        :model="form"
-        :rules="rules"
-        size="small"
-        label-width="66px"
-      >
-        <el-form-item label="用户名" prop="userName">
-          <el-input v-model="form.userName" />
-        </el-form-item>
-        <el-form-item label="电话" prop="phoneNumber">
-          <el-input v-model.number="form.phoneNumber" />
-        </el-form-item>
-        <el-form-item label="姓名" prop="name">
-          <el-input v-model="form.name" />
-        </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="form.email" />
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password" />
-        </el-form-item>
-        <el-form-item label="状态">
-          <el-radio-group v-model="form.enable" style="width: 178px">
-            <el-radio label="0">禁用</el-radio>
-            <el-radio label="1">启用</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="角色" prop="roles">
-          <el-select v-model="checkedRole" multiple style="width: 437px" placeholder="请选择">
-            <el-option
-              v-for="item in roleList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="cancel">取消</el-button>
-        <el-button v-loading="formLoading" type="primary" @click="save">确认</el-button>
-      </div>
-    </el-dialog>
-    <!--表格渲染-->
-    <el-table
-      ref="multipleTable"
-      v-loading="listLoading"
-      :data="list"
-      size="small"
-      style="width: 100%;"
-      @sort-change="sortChange"
-      @selection-change="handleSelectionChange"
-      @row-click="handleRowClick"
-    >
-      <el-table-column type="selection" width="44px" />
-      <el-table-column label="用户名" prop="userName" sortable="custom" align="center" width="150px">
-        <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.userName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="邮箱" prop="email" sortable="custom" align="center" width="200px">
-        <template slot-scope="scope">
-          <span>{{ scope.row.email }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="电话" prop="phoneNumber" sortable="custom" align="center" width="200px">
-        <template slot-scope="scope">
-          <span>{{ scope.row.phoneNumber }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" width="125">
-        <template slot-scope="{row}">
-          <el-button
-            v-permission="['AbpIdentity.Users.Update']"
-            type="primary"
-            size="mini"
-            icon="el-icon-edit"
-            @click="handleUpdate(row)"
-          />
-          <el-button
-            v-permission="['AbpIdentity.Users.Delete']"
-            type="danger"
-            size="mini"
-            :disabled="row.userName==='admin'"
-            icon="el-icon-delete"
-            @click="handleDelete(row)"
-          />
-        </template>
-      </el-table-column>
-    </el-table>
+      >{{ $t('base.reset') }}</el-button>
+      <el-button
+        v-permission="['AbpIdentity.Users.Create']"
+        class="filter-item"
+        size="mini"
+        type="primary"
+        icon="el-icon-plus"
+        @click="handleCreate"
+      >{{ $t('base.add') }}</el-button>
+      <el-button
+        v-permission="['AbpIdentity.Users.Update']"
+        class="filter-item"
+        size="mini"
+        type="success"
+        icon="el-icon-edit"
+        @click="handleUpdate()"
+      >{{ $t('base.edit') }}</el-button>
+      <el-button
+        slot="reference"
+        v-permission="['AbpIdentity.Users.Delete']"
+        class="filter-item"
+        type="danger"
+        icon="el-icon-delete"
+        size="mini"
+        @click="handleDelete()"
+      >{{ $t('base.delete') }}</el-button>
 
-    <pagination
-      v-show="totalCount>0"
-      :total="totalCount"
-      :page.sync="page"
-      :limit.sync="listQuery.MaxResultCount"
-      @pagination="getList"
-    />
-  </div>
-</template>
+      <!--表单渲染-->
+      <el-dialog
+        :visible.sync="dialogFormVisible"
+        :close-on-click-modal="false"
+        :title="formTitle"
+        width="570px"
+      >
+        <el-form
+          ref="form"
+          :inline="true"
+          :model="form"
+          :rules="rules"
+          size="small"
+          label-width="66px"
+        >
+          <el-form-item label="用户名" prop="userName">
+            <el-input v-model="form.userName" />
+          </el-form-item>
+          <el-form-item label="电话" prop="phoneNumber">
+            <el-input v-model.number="form.phoneNumber" />
+          </el-form-item>
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="form.name" />
+          </el-form-item>
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="form.email" />
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input v-model="form.password" type="password" />
+          </el-form-item>
+          <el-form-item label="状态">
+            <el-radio-group v-model="form.enable" style="width: 178px">
+              <el-radio label="0">禁用</el-radio>
+              <el-radio label="1">启用</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="角色" prop="roles">
+            <el-select v-model="checkedRole" multiple style="width: 437px" placeholder="请选择">
+              <el-option
+                v-for="item in roleList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="text" @click="cancel">取消</el-button>
+          <el-button v-loading="formLoading" type="primary" @click="save">确认</el-button>
+        </div>
+      </el-dialog>
+      <!--表格渲染-->
+      <el-table
+        ref="multipleTable"
+        v-loading="listLoading"
+        :data="list"
+        border
+        size="small"
+        style="width: 100%;margin-top:10px"
+        class="box-card"
+        @sort-change="sortChange"
+        @selection-change="handleSelectionChange"
+        @row-click="handleRowClick"
+      >
+        <el-table-column type="selection" width="44px" />
+        <el-table-column label="用户名" prop="userName" sortable="custom" align="center">
+          <template slot-scope="{row}">
+            <span class="link-type" @click="handleUpdate(row)">{{ row.userName }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="邮箱" prop="email" sortable="custom" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.email }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="电话" prop="phoneNumber" sortable="custom" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.row.phoneNumber }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="{row}">
+            <el-button
+              v-permission="['AbpIdentity.Users.Update']"
+              type="primary"
+              size="mini"
+              icon="el-icon-edit"
+              @click="handleUpdate(row)"
+            />
+            <el-button
+              v-permission="['AbpIdentity.Users.Delete']"
+              type="danger"
+              size="mini"
+              :disabled="row.userName==='admin'"
+              icon="el-icon-delete"
+              @click="handleDelete(row)"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+
+      <pagination
+        v-show="totalCount>0"
+        :total="totalCount"
+        :page.sync="page"
+        :limit.sync="listQuery.MaxResultCount"
+        @pagination="getList"
+      />
+    </div>
+  </div></template>
 
 <script>
 import { isvalidPhone } from '@/utils/validate'
@@ -358,7 +358,7 @@ export default {
         this.fetchData(row.id)
         this.dialogFormVisible = true
       } else {
-        if (this.multipleSelection.length != 1) {
+        if (this.multipleSelection.length !== 1) {
           this.$message({
             message: '编辑必须选择单行',
             type: 'warning'
@@ -395,10 +395,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.opts {
-  padding: 6px 0;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-}
+
 </style>

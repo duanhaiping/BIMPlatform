@@ -29,13 +29,6 @@ export default {
     mixChart: '混合图表',
     example: '综合实例',
     nested: '路由嵌套',
-    menu1: '菜单1',
-    'menu1-1': '菜单 1-1',
-    'menu1-2': '菜单 1-2',
-    'menu1-2-1': '菜单 1-2-1',
-    'menu1-2-2': '菜单 1-2-2',
-    'menu1-3': '菜单 1-3',
-    menu2: '菜单 2',
     Table: 'Table',
     dynamicTable: '动态 Table',
     dragTable: '拖拽 Table',
@@ -61,14 +54,16 @@ export default {
     profile: '个人中心',
     systemManagement: '系统管理',
     tenantManagement: '租户管理',
+    ProjectManagement: '项目管理',
     tenant: '租户信息管理',
     tenantConfig: '租户配置',
+    projectList: '项目列表',
+    projectUser: '项目用户',
     user: '用户管理',
     role: '角色管理',
     dict: '数据字典',
     org: '组织机构',
-    job: '岗位管理',
-    employee: '职员管理'
+    job: '岗位管理'
   },
   navbar: {
     dashboard: '首页',
@@ -116,10 +111,6 @@ export default {
     imageUploadTips: '由于我在使用时它只有vue@1版本，而且和mockjs不兼容，所以自己改造了一下，如果大家要使用的话，优先还是使用官方版本。'
   },
   table: {
-    dynamicTips1: '固定表头, 按照表头顺序排序',
-    dynamicTips2: '不固定表头, 按照点击顺序排序',
-    dragTips1: '默认顺序',
-    dragTips2: '拖拽后顺序',
     title: '标题',
     importance: '重要性',
     type: '类型',
@@ -212,6 +203,17 @@ export default {
     },
     notify: {
       isDelete: '是否删除'
+    }
+  },
+  project: {
+    table: {
+      id: '编号',
+      name: '项目名称',
+      principal: '负责人',
+      projectEstimate: '概算',
+      startDate: '开始时间',
+      completeDate: '预计结束日期',
+      address: '地址'
     }
   }
 }

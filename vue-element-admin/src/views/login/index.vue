@@ -170,28 +170,16 @@ export default {
       this.loading = true
       this.$store.dispatch('user/SwitchTenant', this.loginForm.tenantName).then(() => {
         this.loading = false
+        this.$notify({
+          title: 'success',
+          message: '成功,请登录',
+          type: 'success',
+          duration: 2000
+        })
       })
         .catch(() => {
           this.loading = false
         })
-      // this.$axios.gets("/api/abp/multi-tenancy/tenants/by-name/" + this.loginForm.tenantName).then(response => {
-      //   if(response.success){
-      //     this.loginForm.tenanId =response.tenantId;
-      //     this.$notify({
-      //             title: "成功",
-      //             message: "切换成功",
-      //             type: "success",
-      //             duration: 2000
-      //           });
-      //   }else{
-      //      this.$notify({
-      //             title: "失败",
-      //             message: "切换失败",
-      //             type: "warning",
-      //             duration: 2000
-      //           });
-      //   }
-      // });
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {

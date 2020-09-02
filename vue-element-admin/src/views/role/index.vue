@@ -19,40 +19,32 @@
         icon="el-icon-search"
         @click="handleFilter"
       >搜索</el-button>
-      <!-- <el-button
+      <el-button
+        v-permission="['AbpIdentity.Roles.Create']"
         class="filter-item"
         size="mini"
-        type="warning"
-        icon="el-icon-refresh-left"
-        @click="resetQuery"
-      >重置</el-button> -->
-      <div class="opts">
-        <el-button
-          v-permission="['AbpIdentity.Roles.Create']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="handleCreate"
-        >新增</el-button>
-        <el-button
-          v-permission="['AbpIdentity.Roles.Update']"
-          class="filter-item"
-          size="mini"
-          type="success"
-          icon="el-icon-edit"
-          @click="handleUpdate()"
-        >修改</el-button>
-        <el-button
-          slot="reference"
-          v-permission="['AbpIdentity.Roles.Delete']"
-          class="filter-item"
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          @click="handleDelete()"
-        >删除</el-button>
-      </div>
+        type="primary"
+        icon="el-icon-plus"
+        @click="handleCreate"
+      >新增</el-button>
+      <el-button
+        v-permission="['AbpIdentity.Roles.Update']"
+        class="filter-item"
+        size="mini"
+        type="success"
+        icon="el-icon-edit"
+        @click="handleUpdate()"
+      >修改</el-button>
+      <el-button
+        slot="reference"
+        v-permission="['AbpIdentity.Roles.Delete']"
+        class="filter-item"
+        type="danger"
+        icon="el-icon-delete"
+        size="mini"
+        @click="handleDelete()"
+      >删除</el-button>
+
     </div>
     <!--表单渲染-->
     <el-dialog
@@ -83,9 +75,9 @@
       </div>
     </el-dialog>
 
-    <el-row :gutter="15">
+    <el-row :gutter="15" style="margin-top: 10px;">
       <!--角色管理-->
-      <el-col :md="16" style="margin-bottom: 10px">
+      <el-col :md="16" style="margin-bottom: 10px ,margin-top :10px">
         <el-card class="box-card" shadow="never">
           <div slot="header" class="clearfix" style="height:20px">
             <span class="role-span">角色列表</span>
@@ -117,7 +109,7 @@
                 <span>{{ scope.row.isPublic | displayStatus }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="描述" prop="description" align="center" width="150px">
+            <el-table-column label="描述" prop="description" align="center">
               <template slot-scope="scope">
                 <span>{{ scope.row.description }}</span>
               </template>

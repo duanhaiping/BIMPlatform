@@ -57,7 +57,7 @@
       :visible.sync="dialogFormVisible"
       :close-on-click-modal="false"
       :title="formTitle"
-      width="400px"
+      width="670px"
     >
       <el-form
         ref="form"
@@ -67,14 +67,52 @@
         size="small"
         label-width="66px"
       >
-        <el-form-item label="租户名" prop="name">
+        <el-form-item label="项目名称" prop="name" label-width="100px">
           <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item v-show="!isEdit" label="管理员邮箱">
-          <el-input v-model="form.adminEmailAddress" />
+        <el-form-item v-show="isEdit" label="负责人" label-width="100px">
+          <el-input v-model="form.principal" />
         </el-form-item>
-        <el-form-item v-show="!isEdit" label="管理员密码">
-          <el-input v-model="form.adminPassword" />
+        <el-form-item v-show="isEdit" label="地址" label-width="100px">
+          <el-input v-model="form.address" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="面积" label-width="100px">
+          <el-input v-model="form.area" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="开始时间" label-width="100px">
+
+          <el-date-picker v-model="form.startDate" type="date" placeholder="选择日期" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="预计结束时间" label-width="100px">
+          <el-date-picker v-model="form.completeDate" type="date" placeholder="选择日期" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="概算" label-width="100px">
+          <el-input v-model="form.ProjectEstimate" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="总包" label-width="100px">
+          <el-input v-model="form.mainContractor" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="设计单位" label-width="100px">
+          <el-input v-model="form.designOrganization" />
+        </el-form-item>
+
+        <el-form-item v-show="isEdit" label="监理单位" label-width="100px">
+          <el-input v-model="form.supervisingUnit" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="咨询单位" label-width="100px">
+          <el-input v-model="form.consultingUnit" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="设计单位" label-width="100px">
+          <el-input v-model="form.designOrganization" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="经度" label-width="100px">
+          <el-input v-model="form.longitude" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="纬度" label-width="100px">
+          <el-input v-model="form.latitude" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="描述" label-width="100px">
+          <el-input v-model="form.description" type="textarea" />
         </el-form-item>
       </el-form>
 
@@ -87,22 +125,48 @@
     <el-table
       ref="multipleTable"
       v-loading="listLoading"
+      border
       :data="list"
       size="small"
-      style="width: 100%;"
+      style="width: 100%;margin-top: 10px"
       @sort-change="sortChange"
       @selection-change="handleSelectionChange"
       @row-click="handleRowClick"
     >
       <el-table-column type="selection" width="44px" />
-      <el-table-column :label="$t(&quot;tenant.table.id&quot;)" sortable="custom" align="center">
+      <el-table-column :label="$t(&quot;project.table.id&quot;)" sortable="custom" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t(&quot;tenant.table.name&quot;)" prop="name" sortable="custom" align="center">
+      <el-table-column :label="$t(&quot;project.table.name&quot;)" prop="name" sortable="custom" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.name }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t(&quot;project.table.startDate&quot;)" prop="startDate" sortable="custom" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.startDate }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t(&quot;project.table.completeDate&quot;)" prop="completeDate" sortable="custom" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.completeDate }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t(&quot;project.table.address&quot;)" prop="address" sortable="custom" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.address }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t(&quot;project.table.projectEstimate&quot;)" prop="projectEstimate" sortable="custom" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.projectEstimate }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t(&quot;project.table.principal&quot;)" prop="principal" sortable="custom" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.principal }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t(&quot;base.operation&quot;)" align="center" width="125">
@@ -141,7 +205,7 @@ import Pagination from '@/components/Pagination'
 import permission from '@/directive/permission/index.js'
 // import { getTenant } from '@/api/tenant'
 export default {
-  name: 'Tenant',
+  name: 'ProjectUser',
   components: { Pagination },
   directives: { permission },
   data() {
@@ -149,7 +213,7 @@ export default {
     return {
       rules: {
         name: [
-          { required: true, message: '请输入用户姓名', trigger: 'blur' },
+          { required: true, message: '请输入名称', trigger: 'blur' },
           { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
         ]
       },
@@ -180,9 +244,9 @@ export default {
     getList() {
       this.listLoading = true
       this.listQuery.SkipCount = (this.page - 1) * 10
-      this.$axios.gets('/api/multi-tenancy/tenants', this.listQuery).then(response => {
-        this.list = response.items
-        this.totalCount = response.totalCount
+      this.$axios.gets('/api/project/getprojects', this.listQuery).then(response => {
+        this.list = response.result
+        this.totalCount = response.total
         this.listLoading = false
       })
     },
@@ -199,7 +263,7 @@ export default {
 
           if (this.isEdit) {
             this.$axios
-              .puts('/api/multi-tenancy/tenants/' + this.form.id, this.form)
+              .puts('/api/project/update' + this.form.id, this.form)
               .then(response => {
                 this.formLoading = false
                 this.$notify({
@@ -216,7 +280,7 @@ export default {
               })
           } else {
             this.$axios
-              .posts('/api/multi-tenancy/tenants', this.form)
+              .posts('/api/project/create', this.form)
               .then(response => {
                 this.formLoading = false
                 this.$notify({
@@ -251,7 +315,7 @@ export default {
         })
           .then(() => {
             this.$axios
-              .deletes('/api/multi-tenancy/tenants/' + row.id)
+              .deletes('/api/project/delete' + row.id)
               .then(response => {
                 const index = this.list.indexOf(row)
                 this.list.splice(index, 1)
@@ -300,8 +364,8 @@ export default {
     },
 
     fetchData(id) {
-      this.$axios.gets('/api/multi-tenancy/tenants/' + id).then(response => {
-        this.form = response
+      this.$axios.gets('/api/project/getproject?id=' + id).then(response => {
+        this.form = response.result
       })
     },
     sortChange(data) {
@@ -327,7 +391,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 
 </style>
-
