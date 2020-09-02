@@ -13,10 +13,15 @@ namespace BIMPlatform.Permissions
 
             //Define your own permissions here. Example:
             //myGroup.AddPermission(BIMPlatformPermissions.MyPermission1, L("Permission:MyPermission1"));
-            var projectPermissions = myGroup.AddPermission(BIMPlatformPermissions.Project.Default, L("Permission:Project"), MultiTenancySides.Both);
-            projectPermissions.AddChild(BIMPlatformPermissions.Project.Create, L("Permission:Create"), MultiTenancySides.Both);
-            projectPermissions.AddChild(BIMPlatformPermissions.Project.Update, L("Permission:Update"), MultiTenancySides.Both);
-            projectPermissions.AddChild(BIMPlatformPermissions.Project.Delete, L("Permission:Delete"), MultiTenancySides.Both);
+            var projectPermissions = myGroup.AddPermission(BIMPlatformPermissions.Project.Default, L("Permission:Project"), MultiTenancySides.Tenant);
+            projectPermissions.AddChild(BIMPlatformPermissions.Project.Create, L("Permission:Create"), MultiTenancySides.Tenant);
+            projectPermissions.AddChild(BIMPlatformPermissions.Project.Update, L("Permission:Update"), MultiTenancySides.Tenant);
+            projectPermissions.AddChild(BIMPlatformPermissions.Project.Delete, L("Permission:Delete"), MultiTenancySides.Tenant);
+
+            var tenantManagemetPermissions = myGroup.AddPermission(BIMPlatformPermissions.Tenant.Default, L("Permission:Tenant"), MultiTenancySides.Host);
+            tenantManagemetPermissions.AddChild(BIMPlatformPermissions.Tenant.Create, L("Permission:Create"), MultiTenancySides.Host);
+            tenantManagemetPermissions.AddChild(BIMPlatformPermissions.Tenant.Update, L("Permission:Update"), MultiTenancySides.Host);
+            tenantManagemetPermissions.AddChild(BIMPlatformPermissions.Tenant.Delete, L("Permission:Delete"), MultiTenancySides.Host);
         }
 
         private static LocalizableString L(string name)

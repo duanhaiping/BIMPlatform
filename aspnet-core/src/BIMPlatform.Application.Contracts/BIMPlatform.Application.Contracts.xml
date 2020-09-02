@@ -4,9 +4,114 @@
         <name>BIMPlatform.Application.Contracts</name>
     </assembly>
     <members>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Name">
+            <summary>
+             名称
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.StartDate">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ProjectEstimate">
+            <summary>
+            项目概算
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ConstructionUnit">
+            <summary>
+            施工单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.MainContractor">
+            <summary>
+            总包
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.DesignOrganization">
+            <summary>
+            设计单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.SupervisingUnit">
+            <summary>
+            监理单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ConsultingUnit">
+            <summary>
+            咨询单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Principal">
+            <summary>
+            负责人
+            </summary>
+        </member>
         <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Name">
             <summary>
              名称
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.StartDate">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ProjectEstimate">
+            <summary>
+            项目概算
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ConstructionUnit">
+            <summary>
+            施工单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.MainContractor">
+            <summary>
+            总包
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.DesignOrganization">
+            <summary>
+            设计单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.SupervisingUnit">
+            <summary>
+            监理单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ConsultingUnit">
+            <summary>
+            咨询单位
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Principal">
+            <summary>
+            负责人
             </summary>
         </member>
     </members>

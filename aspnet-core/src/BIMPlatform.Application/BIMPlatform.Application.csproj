@@ -11,6 +11,10 @@
     <DocumentationFile>D:\WorkFile\BIMPlatform\aspnet-core\src\BIMPlatform.Application\BIMPlatform.Application.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
     <ItemGroup>
     <ProjectReference Include="..\BIMPlatform.Application.Contracts\BIMPlatform.Application.Contracts.csproj" />
     <ProjectReference Include="..\BIMPlatform.Domain\BIMPlatform.Domain.csproj" />

@@ -1,24 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace BIMPlatform.ProjectDataInfo
+namespace BIMPlatform.Application.Contracts.ProjectDataInfo
 {
-    /*
-     * 兼容ASP.NET Core模型验证系统
-     * ASP.NET Core 内置特性：
-     * [CreditCard]：验证属性是否具有信用卡格式。 需要 JQuery 验证其他方法。
-     * [Compare]：验证模型中的两个属性是否匹配。
-     * [EmailAddress]：验证属性是否具有电子邮件格式。
-     * [Phone]：验证属性是否具有电话号码格式。
-     * [Range]：验证属性值是否在指定的范围内。
-     * [RegularExpression]：验证属性值是否与指定的正则表达式匹配。
-     * [Required]：验证字段是否不为 null。
-     * [StringLength]：验证字符串属性值是否不超过指定长度限制
-     * [Url]：验证属性是否具有 URL 格式
-     * [Remote]：通过在服务器上调用操作方法来验证客户端上的输入
-     */
-    public class ProjectCreateParams
+    public class ProjectUpdateParams
     {
+        [Required]
+        public Guid ID { get; set; }
         /// <summary>
         ///  名称
         /// </summary>
@@ -43,7 +33,7 @@ namespace BIMPlatform.ProjectDataInfo
         /// <summary>
         /// 项目概算
         /// </summary>
-        [Range(0,99999999999.999)]
+        [Range(0, 99999999999.999)]
         public decimal ProjectEstimate { get; set; }
         /// <summary>
         /// 施工单位
@@ -70,7 +60,7 @@ namespace BIMPlatform.ProjectDataInfo
         /// </summary>
         [StringLength(100)]
         public string ConsultingUnit { get; set; }
-        [Range(0,999999999.99)]
+        [Range(0, 999999999.99)]
         public float Area { get; set; }
         [DataType(DataType.Date)]
         public DateTime CompleteDate { get; set; }

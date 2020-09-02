@@ -9,6 +9,7 @@
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",
     "Permission:Default": "View",
-    "ProjectError:NameDuplicate": "An item of the same name already exists"
+    "ProjectError:NameDuplicate": "An item of the same name already exists",
+    "ProjectError:NullObject":"the item is not found" 
   }
 }

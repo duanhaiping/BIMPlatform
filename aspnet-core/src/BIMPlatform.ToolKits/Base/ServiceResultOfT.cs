@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Platform.ToolKits.Base
 {
     /// <summary>
@@ -17,6 +18,7 @@ namespace Platform.ToolKits.Base
         /// </summary>
         public T Result { get; set; }
 
+        public long Total { get; set; }
         /// <summary>
         /// 响应成功
         /// </summary>
@@ -37,6 +39,18 @@ namespace Platform.ToolKits.Base
                 Message = message,
                 Code = ServiceResultCode.Succeed,
                 Result = result
+            };
+            serviceResult.IsSuccessIn(result);
+            return await Task.FromResult(serviceResult);
+        }
+        public static async Task<ServiceResult> PageList(T result, long total, string message = "")
+        {
+            ServiceResult<T> serviceResult = new ServiceResult<T>
+            {
+                Message = message,
+                Code = ServiceResultCode.Succeed,
+                Result = result,
+                Total = total,
             };
             serviceResult.IsSuccessIn(result);
             return await Task.FromResult(serviceResult);

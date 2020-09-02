@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMPlatform.BackgroundJobs"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMPlatform.DbMigrator", "src\BIMPlatform.DbMigrator\BIMPlatform.DbMigrator.csproj", "{5B1AF5B3-E384-4E56-9974-7AFF10036499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMPlatform.Application.Contracts", "src\BIMPlatform.Application.Contracts\BIMPlatform.Application.Contracts.csproj", "{847D3B7F-8F32-4728-A142-FE6B26C1538D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMPlatform.Application.Contracts", "src\BIMPlatform.Application.Contracts\BIMPlatform.Application.Contracts.csproj", "{847D3B7F-8F32-4728-A142-FE6B26C1538D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMPlatform.Domain.Shared", "src\BIMPlatform.Domain.Shared\BIMPlatform.Domain.Shared.csproj", "{60CEC37C-A2AB-49EC-8F2F-620C4C7788C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMPlatform.Domain.Shared", "src\BIMPlatform.Domain.Shared\BIMPlatform.Domain.Shared.csproj", "{60CEC37C-A2AB-49EC-8F2F-620C4C7788C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

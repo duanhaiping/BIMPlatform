@@ -38,7 +38,7 @@ namespace BIMPlatform.ToolKits.Base
             return await Task.FromResult(serviceResult);
         }
 
-        public static async Task<ServiceResult> PageList(int total,IList<T> result,string message = "")
+        public static async Task<ServiceResult> PageList(IList<T> result, int total, string message = "")
         {
             ServiceResult<T> serviceResult = new ServiceResult<T>
             {

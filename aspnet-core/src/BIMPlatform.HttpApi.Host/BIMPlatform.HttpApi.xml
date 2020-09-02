@@ -4,7 +4,7 @@
         <name>BIMPlatform.HttpApi</name>
     </assembly>
     <members>
-        <member name="M:BIMPlatform.Controllers.Project.ProjectController.GetProjects">
+        <member name="M:BIMPlatform.Controllers.Project.ProjectController.GetProjects(BIMPlatform.Application.Contracts.BasePagedAndSortedResultRequestDto)">
             <summary>
             获取当前租户下的所有项目
             </summary>

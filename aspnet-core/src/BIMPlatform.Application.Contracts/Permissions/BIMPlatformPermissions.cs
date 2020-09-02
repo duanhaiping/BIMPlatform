@@ -25,6 +25,15 @@
             public const string Update = GroupName + ".Project" + PermissionType.Update;
             public const string Delete = GroupName + ".Project" + PermissionType.Delete;
         }
+
+        public class Tenant
+        {
+            private const string moduleName = ".Tenant";
+            public const string Default = GroupName + moduleName + PermissionType.Default;
+            public const string Create = GroupName + moduleName + PermissionType.Create;
+            public const string Update = GroupName + moduleName + PermissionType.Update;
+            public const string Delete = GroupName + moduleName + PermissionType.Delete;
+        }
     }
 }
        

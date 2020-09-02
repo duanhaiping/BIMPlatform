@@ -18,11 +18,12 @@ namespace BIMPlatform.Projects
         public string MainContractor { get; set; }
         public string DesignOrganization { get; set; }
         public string SupervisingUnit { get; set; }
-        public string ConstructionUnits { get; set; }
+        public string ConsultingUnit { get; set; }
+        public float Area { get; set; }
+        public Guid Principal { get; set; }
         public DateTime CompleteDate { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
-        public string LaunchUser { get; set; }
         public DateTime CreationTime { get ; set ; }
         public Guid? CreatorId { get ; set ; }
         public Guid? LastModifierId { get ; set ; }
@@ -30,7 +31,7 @@ namespace BIMPlatform.Projects
         public bool IsDeleted { get ; set ; }
         public Guid? DeleterId { get ; set ; }
         public DateTime? DeletionTime { get ; set ; }
-
         public Guid? TenantId { get; set; }
+      
     }
 }
