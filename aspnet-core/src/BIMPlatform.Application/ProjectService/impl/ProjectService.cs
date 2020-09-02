@@ -41,8 +41,7 @@ namespace BIMPlatform.ProjectService.impl
         public async Task DeleteAsync(Guid projectID)
         {
             Projects.Project project = await ProjectRepository.FindAsync(c => c.Id==projectID);
-            //project.IsDeleted=true;
-            await ProjectRepository.UpdateAsync(project);
+            await ProjectRepository.DeleteAsync(project);
             
         }
        
@@ -133,6 +132,8 @@ namespace BIMPlatform.ProjectService.impl
             {
                 project.Principal = projectDto.Principal;
             }
+            project.LastModificationTime = Clock.Now;
+            project.LastModifierId = this.CurrentUser.Id;
            return ObjectMapper.Map<Projects.Project, ProjectDto>(await ProjectRepository.UpdateAsync(project));
         }
 
