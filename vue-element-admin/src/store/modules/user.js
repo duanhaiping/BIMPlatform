@@ -1,4 +1,3 @@
-import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 import axiosMethods from '../../axios/index.js'
@@ -36,28 +35,6 @@ const mutations = {
 }
 
 const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password, tenanId } = userInfo
-    return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  },
-  SwitchTenant({ commit }, data) {
-    axiosMethods.getTenants('/api/abp/multi-tenancy/tenants/by-name/' + data)
-      .then(response => {
-        commit('SET_TENANT', response.tenantId, response.name)
-      }).catch((error) => {
-        reject(error)
-      })
-  },
   userLogin({ commit }, data) { // 用户登录
     return new Promise((resolve, reject) => {
       axiosMethods.instancePosts('/connect/token', data)
@@ -70,15 +47,12 @@ const actions = {
         })
     })
   },
-  // get user info
-  getInfo({ commit }) {
-    return new Promise((resolve, reject) => {
-      axiosMethods.getUserInfo('/connect/userinfo')
+  SwitchTenant({ commit }, data) {
+    new Promise((resolve, reject) => {
+      axiosMethods.getTenants('/api/abp/multi-tenancy/tenants/by-name/' + data)
         .then(response => {
-          commit('SET_NAME', response.name)
-          commit('SET_SUB', response.sub)
-          resolve(response)
-        }).catch(error => {
+          commit('SET_TENANT', response.tenantId, response.name)
+        }).catch((error) => {
           reject(error)
         })
     })
@@ -109,20 +83,21 @@ const actions = {
   // user logout
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        removeToken()
-        resetRouter()
+      axiosMethods.getUserInfo('/api/account/logout')
+        .then(response => {
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          removeToken()
+          resetRouter()
 
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
+          // reset visited views and cached views
+          // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
+          dispatch('tagsView/delAllViews', null, { root: true })
 
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+          resolve()
+        }).catch((error) => {
+          reject(error)
+        })
     })
   },
 

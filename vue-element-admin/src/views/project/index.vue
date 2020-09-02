@@ -67,7 +67,10 @@
         size="small"
         label-width="66px"
       >
-        <el-form-item label="项目名称" prop="name" label-width="100px">
+        <el-form-item v-show="false" label="项目编号" label-width="100px">
+          <el-input v-model="form.id" />
+        </el-form-item>
+        <el-form-item v-show="isEdit" label="项目名称" prop="name" label-width="100px">
           <el-input v-model="form.name" />
         </el-form-item>
         <el-form-item v-show="isEdit" label="负责人" label-width="100px">
@@ -102,8 +105,8 @@
         <el-form-item v-show="isEdit" label="咨询单位" label-width="100px">
           <el-input v-model="form.consultingUnit" />
         </el-form-item>
-        <el-form-item v-show="isEdit" label="设计单位" label-width="100px">
-          <el-input v-model="form.designOrganization" />
+        <el-form-item v-show="isEdit" label="施工单位" label-width="100px">
+          <el-input v-model="form.constructionUnit" />
         </el-form-item>
         <el-form-item v-show="isEdit" label="经度" label-width="100px">
           <el-input v-model="form.longitude" />
@@ -263,7 +266,7 @@ export default {
 
           if (this.isEdit) {
             this.$axios
-              .puts('/api/project/update' + this.form.id, this.form)
+              .puts('/api/project/update', this.form)
               .then(response => {
                 this.formLoading = false
                 this.$notify({
@@ -315,7 +318,7 @@ export default {
         })
           .then(() => {
             this.$axios
-              .deletes('/api/project/delete' + row.id)
+              .deletes('/api/project/delete/' + row.id)
               .then(response => {
                 const index = this.list.indexOf(row)
                 this.list.splice(index, 1)
@@ -364,7 +367,7 @@ export default {
     },
 
     fetchData(id) {
-      this.$axios.gets('/api/project/getproject?id=' + id).then(response => {
+      this.$axios.gets('/api/project/getproject/' + id).then(response => {
         this.form = response.result
       })
     },
