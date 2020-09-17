@@ -1,9 +1,18 @@
 ﻿namespace BIMPlatform.Permissions
 {
+    /*
+        *  权限系统
+        * 
+        * PermissionType：
+        *      Default 用于控制是否有查看模块的权限
+        *      Create、Update、Delete 。。 等用于控制模块内操作权限
+        */
     public static class BIMPlatformPermissions
     {
+        /// <summary>
+        /// 权限分组
+        /// </summary>
         public const string GroupName = "BIMPlatform";
-
 
         //Add your own permission names. Example:
         //public const string MyPermission1 = GroupName + ".MyPermission1";
@@ -20,10 +29,11 @@
         }
         public class Project
         {
-            public const string Default = GroupName + ".Project" + PermissionType.Default;
-            public const string Create= GroupName + ".Project" + PermissionType.Create;
-            public const string Update = GroupName + ".Project" + PermissionType.Update;
-            public const string Delete = GroupName + ".Project" + PermissionType.Delete;
+            private const string moduleName = ".Project";
+            public const string Default = GroupName + moduleName + PermissionType.Default;
+            public const string Create= GroupName + moduleName + PermissionType.Create;
+            public const string Update = GroupName + moduleName + PermissionType.Update;
+            public const string Delete = GroupName + moduleName + PermissionType.Delete;
         }
 
         public class Tenant
@@ -34,6 +44,7 @@
             public const string Update = GroupName + moduleName + PermissionType.Update;
             public const string Delete = GroupName + moduleName + PermissionType.Delete;
         }
+
     }
 }
        

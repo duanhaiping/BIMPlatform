@@ -26,7 +26,6 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
 using BIMPlatform.EntityFrameworkCore;
 using BIMPlatform.BackgroundJobs;
-using BIMPlatform.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using BIMPlatform.Filters;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
@@ -34,6 +33,14 @@ using BIMPlatform.Middleware;
 using BIMPlatform.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
+using BIMPlatform.Swagger;
+using Volo.Abp.Caching;
+using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
+using Microsoft.AspNetCore.DataProtection;
+using BIMPlatform.InstantMessage;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 
 namespace BIMPlatform
 {
@@ -46,11 +53,12 @@ namespace BIMPlatform
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(BIMPlatformHttpApiModule),
-         typeof(BIMPlatformApplicationModule),
+        typeof(BIMPlatformApplicationModule),
         typeof(BIMPlatformEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
-         typeof(BIMPlatformSwaggerModule),
-        typeof(BIMPlatformBackgroundJobsModule)
+        typeof(BIMPlatformSwaggerModule),
+        typeof(BIMPlatformBackgroundJobsModule),
+        typeof(BIMPlatformRealTimeMessageModule)
         )]
     public class BIMPlatformHttpApiHostModule : AbpModule
     {
@@ -71,19 +79,45 @@ namespace BIMPlatform
                 // 移除 AbpExceptionFilter
                 options.Filters.Remove(filterMetadata);
 
-                // 添加自己实现的 MeowvBlogExceptionFilter
+                // 添加自己实现的 Filter
                 options.Filters.Add(typeof(BIMPlatformExceptionFilter));
             });
             ConfigureUrls(configuration);
             //ConfigureConventionalControllers();
             ConfigureAuthentication(context, configuration);
             ConfigureLocalization();
+            ConfigureCache(configuration);
             ConfigureVirtualFileSystem(context);
+            //ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
-            //ConfigureSwaggerServices(context);
             ConfigureRouting(context);
         }
 
+        private void ConfigureRedis(
+           ServiceConfigurationContext context,
+           IConfiguration configuration,
+           IWebHostEnvironment hostingEnvironment)
+        {
+            context.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration["Redis:Configuration"];
+            });
+
+            if (!hostingEnvironment.IsDevelopment())
+            {
+                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
+                context.Services
+                    .AddDataProtection()
+                    .PersistKeysToStackExchangeRedis(redis, "SignalRTieredDemo-Protection-Keys");
+            }
+        }
+        private void ConfigureCache(IConfiguration configuration)
+        {
+            Configure<AbpDistributedCacheOptions>(options =>
+            {
+                options.KeyPrefix = "BIMPlatform:";
+            });
+        }
         private void ConfigureRouting(ServiceConfigurationContext context)
         {
             context.Services.AddRouting(options =>
@@ -94,16 +128,7 @@ namespace BIMPlatform
                 options.AppendTrailingSlash = true;
             });
         }
-        #region no use
-        private static void ConfigureSwaggerServices(ServiceConfigurationContext context)
-        {
-            context.Services.AddSwaggerGen(
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "BIMPlatform API", Version = "v1" });
-                    options.DocInclusionPredicate((docName, description) => true);
-                });
-        }
+
 
         private void ConfigureUrls(IConfiguration configuration)
         {
@@ -112,7 +137,7 @@ namespace BIMPlatform
                 options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
             });
         }
-        #endregion
+    
 
         private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
         {
@@ -151,11 +176,11 @@ namespace BIMPlatform
                     options.Authority = configuration["AuthServer:Authority"];
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "BIMPlatform";
-                    options.JwtBackChannelHandler = new HttpClientHandler()
-                    {
-                        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-                    };
-                });
+                    //options.JwtBackChannelHandler = new HttpClientHandler()
+                    //{
+                    //    ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                    //};
+                }); 
           
         }
 
@@ -163,12 +188,6 @@ namespace BIMPlatform
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                //options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-                //options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                //options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                //options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                //options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
-                // options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
@@ -225,11 +244,10 @@ namespace BIMPlatform
                 app.UseMultiTenancy();
               
             }
-
             app.UseAbpRequestLocalization();
             app.UseIdentityServer();
             app.UseAuthorization();
-
+          
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();

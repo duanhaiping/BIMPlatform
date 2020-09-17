@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Compile Remove="BIMPlatformConsts.cs" />
+    <Compile Remove="Settings\BIMPlatformSettings.cs" />
     <Compile Remove="Users\BIMPlatformAdministratorUserDataSeederContributor.cs" />
   </ItemGroup>
 

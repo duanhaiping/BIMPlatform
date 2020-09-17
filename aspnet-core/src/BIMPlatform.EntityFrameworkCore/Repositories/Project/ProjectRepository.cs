@@ -13,10 +13,6 @@ namespace BIMPlatform.Repositories.Project
            
         }
         
-        //public override Task DeleteAsync(Guid id, bool autoSave = false, CancellationToken cancellationToken = default)
-        //{
-
-        //    return base.DeleteAsync(id, autoSave, cancellationToken);
-        //}
+       
     }
 }

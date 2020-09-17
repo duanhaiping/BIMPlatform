@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIMPlatform.Users;
+using System;
 using Volo.Abp;
 using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities;
@@ -32,6 +33,8 @@ namespace BIMPlatform.Projects
         public Guid? DeleterId { get ; set ; }
         public DateTime? DeletionTime { get ; set ; }
         public Guid? TenantId { get; set; }
-      
+
+       
+
     }
 }

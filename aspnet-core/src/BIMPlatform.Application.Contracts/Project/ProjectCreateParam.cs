@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BIMPlatform.ProjectDataInfo
+namespace BIMPlatform.Application.Contracts.Project
 {
     /*
      * 兼容ASP.NET Core模型验证系统
@@ -17,7 +17,7 @@ namespace BIMPlatform.ProjectDataInfo
      * [Url]：验证属性是否具有 URL 格式
      * [Remote]：通过在服务器上调用操作方法来验证客户端上的输入
      */
-    public class ProjectCreateParams
+    public class ProjectCreateParam
     {
         /// <summary>
         ///  名称

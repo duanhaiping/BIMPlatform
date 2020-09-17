@@ -1,7 +1,9 @@
 ﻿using BIMPlatform.Application.Contracts;
-using BIMPlatform.Application.Contracts.ProjectDataInfo;
+using BIMPlatform.Application.Contracts.Project;
+using BIMPlatform.Permissions;
 using BIMPlatform.Project.Repositories;
-using BIMPlatform.ProjectDataInfo;
+using BIMPlatform.Project;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,21 +25,22 @@ namespace BIMPlatform.ProjectService.impl
            
             DataFilter = dataFilter;
             ProjectRepository = projectRepository;
-        } 
-        public Task CreateAsync(ProjectCreateParams projectDto)
+        }
+        [Authorize(BIMPlatformPermissions.Project.Create)]
+        public Task CreateAsync(ProjectCreateParam projectDto)
         {
-            Projects.Project project = ObjectMapper.Map<ProjectCreateParams, Projects.Project>(projectDto);
+            Projects.Project project = ObjectMapper.Map<ProjectCreateParam, Projects.Project>(projectDto);
             project.CreationTime = DateTime.Now;
             project.CreatorId = CurrentUser.Id;
             project.TenantId = CurrentTenant.Id;
             project.IsDeleted = false;
-            var existed=  ProjectRepository.FirstOrDefault(c=>c.Name==project.Name &&c.TenantId== project.TenantId);
+            var existed=  ProjectRepository.FirstOrDefault(c=>c.Name==project.Name );
             if (existed != null)
                 throw new ArgumentException(L["ProjectError:NameDuplicate"]);
             ProjectRepository.InsertAsync(project);
             return Task.CompletedTask;
         }
-
+        [Authorize(BIMPlatformPermissions.Project.Delete)]
         public async Task DeleteAsync(Guid projectID)
         {
             Projects.Project project = await ProjectRepository.FindAsync(c => c.Id==projectID);
@@ -66,7 +69,22 @@ namespace BIMPlatform.ProjectService.impl
                 return result;
             }
         }
-        public async Task<ProjectDto> UpdateAsync(ProjectUpdateParams projectDto)
+
+        public async Task<IList<ProjectDto>> GetProjectList(string name)
+        {
+            IList<ProjectDto> result;
+            // 默认开启租户过滤，所以不在展示
+            using (DataFilter.Enable<ISoftDelete>())
+            {
+                var target = (await ProjectRepository.GetListAsync()).WhereIf(!name.IsNullOrWhiteSpace(), t => t.Name.Contains(name));
+                // 排序
+               
+                result = ObjectMapper.Map<IList<Projects.Project>, IList<ProjectDto>>(target.ToList());
+                return result;
+            }
+        }
+        [Authorize(BIMPlatformPermissions.Project.Update)]
+        public async Task<ProjectDto> UpdateAsync(ProjectUpdateParam projectDto)
         {
             Projects.Project project = await ProjectRepository.FindAsync(projectDto.ID);
             if (project == null)

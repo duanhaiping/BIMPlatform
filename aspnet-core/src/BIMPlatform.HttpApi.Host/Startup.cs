@@ -9,7 +9,13 @@ namespace BIMPlatform
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            SetModuleTablePrefix ();
 
+            services.AddApplication<BIMPlatformHttpApiHostModule>();
+        }
+
+        private static void SetModuleTablePrefix()
+        {
             Volo.Abp.PermissionManagement.AbpPermissionManagementDbProperties.DbTablePrefix = "Sys_";
             Volo.Abp.SettingManagement.AbpSettingManagementDbProperties.DbTablePrefix = "Sys_";
             Volo.Abp.Identity.AbpIdentityDbProperties.DbTablePrefix = "Sys_";
@@ -19,8 +25,6 @@ namespace BIMPlatform
             Volo.Abp.FeatureManagement.FeatureManagementDbProperties.DbTablePrefix = "Sys_";
             Volo.Abp.BackgroundJobs.BackgroundJobsDbProperties.DbTablePrefix = "Sys_";
             Volo.Abp.AuditLogging.AbpAuditLoggingDbProperties.DbTablePrefix = "SysLog_";
-            
-            services.AddApplication<BIMPlatformHttpApiHostModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

@@ -9,7 +9,7 @@
     "Permission:Delete": "删除",
     "Permission:Project": "项目管理",
     "Permission:Update": "更新",
-    "ProjectError:NameDuplicate": "项目名称不可重复",
-    "ProjectError:NullObject": "不存在指定的项目"
+    "Error:Project:NameDuplicate": "项目名称不可重复",
+    "Error:Project:NullObject": "不存在指定的项目"
   }
 }

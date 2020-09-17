@@ -5,7 +5,6 @@ export default {
     port: '44312',
     backend_port: '44312'
   },
-  
   client: {
     client_id: 'BIMPlatform_App',
     client_secret: '1q2w3e*',

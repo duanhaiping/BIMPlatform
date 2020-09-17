@@ -4,10 +4,62 @@
         <name>BIMPlatform.HttpApi</name>
     </assembly>
     <members>
+        <member name="T:BIMPlatform.Controllers.MinIO.MinIOController">
+            <summary>
+            MinIO 文件存储
+            </summary>
+        </member>
+        <member name="M:BIMPlatform.Controllers.MinIO.MinIOController.Upload(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件-单文件上传
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.MinIO.MinIOController.MuiltUpload(System.Collections.Generic.ICollection{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+             上传文件-多单文件上传
+            </summary>
+            <param name="files"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.OSS.OssController.Policy">
+            <summary>
+            获取oss 上传策略
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.OSS.OssController.Callback">
+            <summary>
+             回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.Project.ProjectController.GetProject(System.Guid)">
+            <summary>
+            获取id 所代表的项目
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:BIMPlatform.Controllers.Project.ProjectController.GetProjects(BIMPlatform.Application.Contracts.BasePagedAndSortedResultRequestDto)">
             <summary>
             获取当前租户下的所有项目
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.Project.ProjectController.Create(BIMPlatform.Application.Contracts.Project.ProjectCreateParam)">
+            <summary>
+            新增项目
+            </summary>
+            <param name="createParams">具体参数参考实体类型说明</param>
+            <returns></returns>
+        </member>
+        <member name="M:BIMPlatform.Controllers.Project.ProjectController.Update(BIMPlatform.Application.Contracts.Project.ProjectUpdateParam)">
+            <summary>
+            更新项目
+            </summary>
+            <param name="updateParams">具体参数参考实体类型说明</param>
             <returns></returns>
         </member>
     </members>

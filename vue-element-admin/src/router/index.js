@@ -186,14 +186,14 @@ export const asyncRoutes = [
         }
       }, {
         path: 'projectUser',
-        component: () => import('@/views/project/projectUser'),
+        component: () => import('@/views/chat/index'),
         name: 'projectUser',
         meta: {
           title: 'projectUser',
           // roles: ['AbpIdentity.tenant'],
           icon: 'job'
         },
-        hidden: true
+        hidden: false
       }
     ]
   },

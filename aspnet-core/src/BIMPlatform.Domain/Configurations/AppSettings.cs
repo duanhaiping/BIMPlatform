@@ -12,6 +12,8 @@ namespace BIMPlatform.Configurations
         /// </summary>
         private static readonly IConfigurationRoot _config;
 
+        private const string Prefix = "BIMPlatform";
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -35,34 +37,29 @@ namespace BIMPlatform.Configurations
 
         public static string ApiVersion => _config["ApiVersion"];
 
-        /// <summary>
-        /// JWT
-        /// </summary>
-        public static class JWT
-        {
-            public static string Domain => _config["JWT:Domain"];
-
-            public static string SecurityKey => _config["JWT:SecurityKey"];
-
-            public static int Expires => Convert.ToInt32(_config["JWT:Expires"]);
-        }
         public static class Hangfire
         {
             public static string Login => _config["Hangfire:Login"];
             public static string Password => _config["Hangfire:Password"];
         }
-
-        /// <summary>
-        /// Caching
-        /// </summary>
-        public static class Caching
+        public static class ALiYun
         {
-            /// <summary>
-            /// RedisConnectionString
-            /// </summary>
-            public static string RedisConnectionString => _config["Caching:RedisConnectionString"];
+            public static string EndPoint => _config["ALiYun:OSS:EndPoint"];
+            public static string AccessKeyId => _config["ALiYun:OSS:AccessKeyId"];
+            public static string AccessKeySecret => _config["ALiYun:OSS:AccessKeySecret"];
+            public static string BucketName => _config["ALiYun:OSS:BucketName"];
+            public static int Expire => int.Parse(_config["ALiYun:OSS:Policy:Expire"]);
+            public static int MaxSize =>int.Parse( _config["ALiYun:OSS:MaxSize"]);
+            public static string Callback => _config["ALiYun:OSS:Callback"];
+            public static string DirPrefix => _config["ALiYun:OSS:Dir:Prefix"];
         }
-
-     
+    
+        public static class MinIO
+        {
+            public static string EndPoint => _config["MinIO:EndPoint"];
+            public static string BucketName => _config["MinIO:BucketName"];
+            public static string AccessKey => _config["MinIO:AccessKey"];
+            public static string SecretKey => _config["MinIO:SecretKey"];
+        }
     }
 }

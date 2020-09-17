@@ -322,6 +322,7 @@ export default {
           })
         })
       })
+
       this.$axios
         .puts(
           '/api/abp/permissions?providerName=R&providerKey=' + this.multipleSelection[0].name,

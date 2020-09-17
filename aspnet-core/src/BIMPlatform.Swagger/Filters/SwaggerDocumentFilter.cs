@@ -15,17 +15,15 @@ namespace BIMPlatform.Swagger.Filters
         {
             var tags = new List<OpenApiTag>
             {
-               
-
                 new OpenApiTag {
-                    Name = "Common",
-                    Description = "通用公共接口",
+                    Name = "MinIO",
+                    Description = "MinIO 文件上传接口",
                     ExternalDocs = new OpenApiExternalDocs { Description = "通用公共接口" }
                 },
                 new OpenApiTag
                 {
-                    Name="Module",
-                    Description="基础模块接口",
+                    Name="Oss",
+                    Description="OSS文件上传接口",
                     ExternalDocs= new OpenApiExternalDocs { Description="基础模块接口"}
                 }
             };
@@ -33,23 +31,22 @@ namespace BIMPlatform.Swagger.Filters
             #region 实现添加自定义描述时过滤不属于同一个分组的API
 
             // 当前分组名称
-            var ggroup = context.ApiDescriptions.FirstOrDefault();
-            string groupName = "";
-            if (ggroup != null)
+            var group = context.ApiDescriptions.FirstOrDefault();
+            if (group != null)
             {
-                groupName = context.ApiDescriptions.FirstOrDefault().GroupName;
+                string groupName = context.ApiDescriptions.FirstOrDefault().GroupName;
+                
+                // 当前所有的API对象
+                var apis = context.ApiDescriptions.GetType().GetField("_source", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(context.ApiDescriptions) as IEnumerable<ApiDescription>;
+
+                // 不属于当前分组的所有Controller
+                // 注意：配置的OpenApiTag，Name名称要与Controller的Name对应才会生效。
+                var controllers = apis.Where(x => x.GroupName != groupName).Select(x => ((ControllerActionDescriptor)x.ActionDescriptor).ControllerName).Distinct();
+
+                // 筛选一下tags
+                swaggerDoc.Tags = tags.Where(x => !controllers.Contains(x.Name)).OrderBy(x => x.Name).ToList();
+
             }
-           
-
-            // 当前所有的API对象
-            var apis = context.ApiDescriptions.GetType().GetField("_source", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(context.ApiDescriptions) as IEnumerable<ApiDescription>;
-
-            // 不属于当前分组的所有Controller
-            // 注意：配置的OpenApiTag，Name名称要与Controller的Name对应才会生效。
-            var controllers = apis.Where(x => x.GroupName != groupName).Select(x => ((ControllerActionDescriptor)x.ActionDescriptor).ControllerName).Distinct();
-
-            // 筛选一下tags
-            swaggerDoc.Tags = tags.Where(x => !controllers.Contains(x.Name)).OrderBy(x => x.Name).ToList();
 
             #endregion
         }

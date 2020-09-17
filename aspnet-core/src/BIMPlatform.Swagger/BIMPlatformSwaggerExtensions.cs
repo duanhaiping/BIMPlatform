@@ -42,17 +42,6 @@ namespace BIMPlatform.Swagger
             },
             new SwaggerApiInfo
             {
-                UrlPrefix = ApiGrouping.GroupName_v4,
-                Name = "JWT授权接口",
-                OpenApiInfo = new OpenApiInfo
-                {
-                    Version = version,
-                    Title = "BIMPlus - JWT授权接口",
-                    Description = description
-                }
-            },
-            new SwaggerApiInfo
-            {
                 UrlPrefix = ApiGrouping.GroupName_v1,
                 Name = "基础模块接口",
                 OpenApiInfo = new OpenApiInfo
@@ -74,7 +63,7 @@ namespace BIMPlatform.Swagger
             return services.AddSwaggerGen(options =>
             {
                 //options.SwaggerDoc("v1", new OpenApiInfo { Title = "BIMPlatform API", Version = "v1" });
-                options.DocInclusionPredicate((docName, description) => true);
+                //options.DocInclusionPredicate((docName, description) => true);
                 // 遍历并应用Swagger分组信息
                 ApiInfos.ForEach(x =>
                 {
@@ -85,7 +74,22 @@ namespace BIMPlatform.Swagger
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "BIMPlatform.Domain.xml"));
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "BIMPlatform.Application.Contracts.xml"));
 
+
                 #region 小绿锁，JWT身份认证配置
+
+                var security = new OpenApiSecurityScheme
+                {
+                    Description = "JWT模式授权，请输入 Bearer {Token} 进行身份验证",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                };
+                options.AddSecurityDefinition("oauth2", security);
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement { { security, new List<string>() } });
+                options.OperationFilter<AddResponseHeadersFilter>();
+                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+
                 #endregion
 
                 // 应用Controller的API文档描述信息

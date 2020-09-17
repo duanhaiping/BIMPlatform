@@ -12,11 +12,11 @@ namespace Platform.ToolKits.Base.Enum
         /// <summary>
         /// 成功
         /// </summary>
-        Succeed = 0,
+        Succeed = 200,
 
         /// <summary>
         /// 失败
         /// </summary>
-        Failed = 1,
+        Failed = 500,
     }
 }

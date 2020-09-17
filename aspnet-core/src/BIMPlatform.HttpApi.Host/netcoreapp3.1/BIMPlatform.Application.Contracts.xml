@@ -4,114 +4,203 @@
         <name>BIMPlatform.Application.Contracts</name>
     </assembly>
     <members>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Name">
+        <member name="P:BIMPlatform.Application.Contracts.MinIO.MinioUploadDto.FileName">
+            <summary>
+             file name
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.MinIO.MinioUploadDto.Url">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackParam.CallbackUrl">
+            <summary>
+            请求的回调地址
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackParam.CallbackBody">
+            <summary>
+            回调是传入request中的参数
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackParam.CallbackBodyType">
+            <summary>
+            回调时传入参数的格式，比如表单提交形式
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackResult.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackResult.Size">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackResult.MineType">
+            <summary>
+            文件的mimeType
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackResult.Width">
+            <summary>
+            图片文件的宽
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssCallbackResult.Height">
+            <summary>
+            图片文件的高
+            </summary>
+        </member>
+        <member name="T:BIMPlatform.Application.Contracts.OSS.OssPolicyResult">
+            获取OSS上传文件授权返回结果
+            Created by macro on 2018/5/17.
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.AccessKeyId">
+            <summary>
+            访问身份验证中用到用户标识
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.Policy">
+            <summary>
+            用户表单上传的策略,经过base64编码过的字符串
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.Signature">
+            <summary>
+            对policy签名后的字符串
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.Dir">
+            <summary>
+            上传文件夹路径前缀
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.Host">
+            <summary>
+            oss对外服务的访问域名
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.OSS.OssPolicyResult.Callback">
+            <summary>
+             上传成功后的回调设置
+            </summary>
+        </member>
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.Name">
             <summary>
              名称
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Description">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.Description">
             <summary>
             描述
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.StartDate">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.StartDate">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Address">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.Address">
             <summary>
             地址
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ProjectEstimate">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.ProjectEstimate">
             <summary>
             项目概算
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ConstructionUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.ConstructionUnit">
             <summary>
             施工单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.MainContractor">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.MainContractor">
             <summary>
             总包
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.DesignOrganization">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.DesignOrganization">
             <summary>
             设计单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.SupervisingUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.SupervisingUnit">
             <summary>
             监理单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.ConsultingUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.ConsultingUnit">
             <summary>
             咨询单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.Application.Contracts.ProjectDataInfo.ProjectUpdateParams.Principal">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectCreateParam.Principal">
             <summary>
             负责人
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Name">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.Name">
             <summary>
              名称
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Description">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.Description">
             <summary>
             描述
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.StartDate">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.StartDate">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Address">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.Address">
             <summary>
             地址
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ProjectEstimate">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.ProjectEstimate">
             <summary>
             项目概算
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ConstructionUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.ConstructionUnit">
             <summary>
             施工单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.MainContractor">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.MainContractor">
             <summary>
             总包
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.DesignOrganization">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.DesignOrganization">
             <summary>
             设计单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.SupervisingUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.SupervisingUnit">
             <summary>
             监理单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.ConsultingUnit">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.ConsultingUnit">
             <summary>
             咨询单位
             </summary>
         </member>
-        <member name="P:BIMPlatform.ProjectDataInfo.ProjectCreateParams.Principal">
+        <member name="P:BIMPlatform.Application.Contracts.Project.ProjectUpdateParam.Principal">
             <summary>
             负责人
+            </summary>
+        </member>
+        <member name="F:BIMPlatform.Permissions.BIMPlatformPermissions.GroupName">
+            <summary>
+            权限分组
             </summary>
         </member>
     </members>

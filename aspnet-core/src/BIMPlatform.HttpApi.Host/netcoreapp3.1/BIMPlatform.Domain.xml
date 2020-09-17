@@ -24,20 +24,5 @@
             ConnectionStrings
             </summary>
         </member>
-        <member name="T:BIMPlatform.Configurations.AppSettings.JWT">
-            <summary>
-            JWT
-            </summary>
-        </member>
-        <member name="T:BIMPlatform.Configurations.AppSettings.Caching">
-            <summary>
-            Caching
-            </summary>
-        </member>
-        <member name="P:BIMPlatform.Configurations.AppSettings.Caching.RedisConnectionString">
-            <summary>
-            RedisConnectionString
-            </summary>
-        </member>
     </members>
 </doc>

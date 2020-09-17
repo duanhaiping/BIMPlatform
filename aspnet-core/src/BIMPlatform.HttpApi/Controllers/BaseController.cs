@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BIMPlatform.Controllers
 {

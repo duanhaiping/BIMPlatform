@@ -117,6 +117,9 @@
         <el-form-item v-show="isEdit" label="描述" label-width="100px">
           <el-input v-model="form.description" type="textarea" />
         </el-form-item>
+        <el-form-item v-show="isEdit" label="附件：" label-width="100px">
+          <single-upload v-model="form.bigPic" />
+        </el-form-item>
       </el-form>
 
       <div slot="footer" class="dialog-footer">
@@ -203,13 +206,12 @@
 </template>
 
 <script>
-// import { isvalidPhone } from '@/utils/validate'
 import Pagination from '@/components/Pagination'
 import permission from '@/directive/permission/index.js'
-// import { getTenant } from '@/api/tenant'
+import SingleUpload from '@/components/Upload/singleUpload'
 export default {
-  name: 'ProjectUser',
-  components: { Pagination },
+  name: 'Project',
+  components: { Pagination, SingleUpload },
   directives: { permission },
   data() {
     // 自定义验证

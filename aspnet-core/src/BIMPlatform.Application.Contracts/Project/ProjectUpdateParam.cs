@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace BIMPlatform.Application.Contracts.ProjectDataInfo
+namespace BIMPlatform.Application.Contracts.Project
 {
-    public class ProjectUpdateParams
+    public class ProjectUpdateParam
     {
         [Required]
         public Guid ID { get; set; }

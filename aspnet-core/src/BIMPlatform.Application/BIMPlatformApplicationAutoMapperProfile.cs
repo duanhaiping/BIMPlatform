@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BIMPlatform.Application.Contracts.Project;
 
 namespace BIMPlatform
 {
@@ -10,9 +11,9 @@ namespace BIMPlatform
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
-            CreateMap<Projects.Project, ProjectDataInfo.ProjectDto>();
-            CreateMap< ProjectDataInfo.ProjectDto, Projects.Project>();
-            CreateMap<ProjectDataInfo.ProjectCreateParams, Projects.Project>();
+            CreateMap<Projects.Project, ProjectDto>();
+            CreateMap< ProjectDto, Projects.Project>();
+            CreateMap<ProjectCreateParam, Projects.Project>();
         }
     }
 }

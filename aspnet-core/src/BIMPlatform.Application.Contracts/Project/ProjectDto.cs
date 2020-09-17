@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
 
-namespace BIMPlatform.ProjectDataInfo
+namespace BIMPlatform.Application.Contracts.Project
 {
     public class ProjectDto: AuditedEntityDto<Guid>
     {
